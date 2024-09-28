@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Académica y Operaciones</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Menú de Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="https://tse2.mm.bing.net/th?id=OIP.DWl1TWG2FMBmigwzjQAbHgHaFL&pid=Api&P=0&h=220" style="height: 150px; width: 150px;" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+    </div>
+  </nav>
+
+  <!-- Carousel -->
+  <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://tse2.mm.bing.net/th?id=OIP.DWl1TWG2FMBmigwzjQAbHgHaFL&pid=Api&P=0&h=220" style="height: 500px; width: 2800px;" class="d-block w-50 m-auto" alt="Imagen 1" >
+      </div>
+      <div class="carousel-item">
+        <img src="https://ampacolegioricocejudo.com/wp-content/uploads/2020/03/matematicas-8.jpg" style="height: 500px; width: 2800px;" class="d-block w-50 m-auto" alt="Imagen 3"> 
+      </div>
+      <div class="carousel-item">
+        <img src="https://static.vecteezy.com/system/resources/previews/013/086/795/non_2x/cartoon-maths-elements-background-education-logo-vector.jpg" class="d-block w-50 m-auto" style="height: 500px; width: 2800px;" alt="Imagen 2"> 
+    </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Atras</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+
+  <!-- Acordeón con funcionalidades -->
+  <div class="container mt-4">
+    <div class="accordion" id="accordionExample">
+
+      <!-- Calculadora Académica -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAcademic">
+          <button class="accordion-button bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAcademic" aria-expanded="true" aria-controls="collapseAcademic">
+            Calculadora Académica
+          </button>
+        </h2>
+        <div id="collapseAcademic" class="accordion-collapse collapse show" aria-labelledby="headingAcademic" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <form id="formAcad">
+              <div class="mb-3">
+                <label for="nota1" class="form-label">Nota 1:</label>
+                <input type="number" class="form-control" id="nota1" step="0.1" min="0" max="5.0">
+              </div>
+              <div class="mb-3">
+                <label for="nota2" class="form-label">Nota 2:</label>
+                <input type="number" class="form-control" id="nota2" step="0.1" min="0" max="5.0">
+              </div>
+              <div class="mb-3">
+                <label for="nota3" class="form-label">Nota 3:</label>
+                <input type="number" class="form-control" id="nota3" step="0.1" min="0" max="5.0">
+              </div>
+              <div class="mb-3">
+                <label for="examen30" class="form-label">Examen Final (30%):</label>
+                <input type="number" class="form-control" id="examen30" step="0.1" min="0" max="5.0">
+              </div>
+              <button type="button" class="btn btn-info" onclick="calcularNota()">Calcular Nota Final</button>
+              <p id="resultadoNota"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOperations">
+          <button class="accordion-button collapsed bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOperations" aria-expanded="false" aria-controls="collapseOperations">
+            Operaciones Matemáticas
+          </button>
+        </h2>
+        <div id="collapseOperations" class="accordion-collapse collapse" aria-labelledby="headingOperations" data-bs-parent="#accordionExample">
+          <div class="accordion-body">            
+            <div class="d-flex justify-content-between mb-3">
+              <button type="button" class="btn btn-outline-secondary" onclick="mostrarFormSuma()">Suma</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="mostrarFormResta()">Resta</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="mostrarFormMult()">Multiplicar</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="mostrarFormDiv()">División</button>
+            </div>
+            <div id="formulariosOperaciones">
+              <form id="formSum" style="display:none;">
+                <div class="mb-3">
+                  <label for="num1" class="form-label">Número 1:</label>
+                  <input type="number" class="form-control" id="num1">
+                </div>
+                <div class="mb-3">
+                  <label for="num2" class="form-label">Número 2:</label>
+                  <input type="number" class="form-control" id="num2">
+                </div>
+                <button type="button" class="btn btn-dark" onclick="sumar()">Sumar</button>
+                <p id="resultadoSuma"></p>
+              </form>
+              <form id="formRest" style="display:none;">
+                <div class="mb-3">
+                  <label for="numero1" class="form-label">Numero 1:</label>
+                  <input type="number" class="form-control" id="numero1">
+                </div>
+                <div class="mb-3">
+                  <label for="numero2" class="form-label">Numero 2:</label>
+                  <input type="number" class="form-control" id="numero2">
+                </div>
+                <div class="mb-3">
+                  <label for="numero3" class="form-label">Numero 3:</label>
+                  <input type="number" class="form-control" id="numero3">
+                </div>
+                <button type="button" class="btn btn-dark" onclick="restar()">Restar</button>
+                <p id="resultadoResta"></p>
+              </form>
+              <form id="formMult" style="display:none;">
+                <div class="mb-3">
+                  <label for="num3" class="form-label">Número1:</label>
+                  <input type="number" class="form-control" id="num3">
+                </div>
+                <div class="mb-3">
+                  <label for="num4" class="form-label">Número2:</label>
+                  <input type="number" class="form-control" id="num4">
+                </div>
+                <button type="button" class="btn btn-dark" onclick="multiplicar()">Multiplicar</button>
+                <p id="resultadoMult"></p>
+              </form>
+              <form id="formDiv" style="display:none;">
+                <div class="mb-3">
+                  <label for="num5" class="form-label">Número1:</label>
+                  <input type="number" class="form-control" id="num5">
+                </div>
+                <div class="mb-3">
+                  <label for="num6" class="form-label">Número2:</label>
+                  <input type="number" class="form-control" id="num6">
+                </div>
+                <button type="button" class="btn btn-dark" onclick="dividir()">Dividir</button>
+                <p id="resultadoDiv"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4" style="width: 750px;">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-telephone-fill"></i> Tel: 376748684</li>
+            <li><i class="bi bi-envelope-fill"></i> Correo: <a href="mailto:empresa@correo.com" class="text-light">empresa@correo.com</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 text-end">
+          <h5>Créditos</h5>
+          <p class="mb-0">&copy; 2024 Empresa. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    
+
+    //calcular nota final
+    function calcularNota() {
+      const nota1 = parseFloat(document.getElementById('nota1').value) || 0;
+      const nota2 = parseFloat(document.getElementById('nota2').value) || 0;
+      const nota3 = parseFloat(document.getElementById('nota3').value) || 0;
+      const examen30 = parseFloat(document.getElementById('examen30').value) || 0;
+
+      const promedio70 = (nota1 + nota2 + nota3) / 3;
+      const notaFinal = (promedio70 * 0.7) + (examen30 * 0.3);
+
+      document.getElementById('resultadoNota').textContent = 'Tu nota final es: ' + notaFinal.toFixed(2);
+    }
+
+    // Formulario para la calculadora
+    function mostrarFormSuma() {
+      document.getElementById('formSum').style.display = 'block';
+      document.getElementById('formRest').style.display = 'none';
+      document.getElementById('formMult').style.display = 'none';
+      document.getElementById('formDiv').style.display = 'none';
+    }
+
+    function mostrarFormResta() {
+      document.getElementById('formSum').style.display = 'none';
+      document.getElementById('formRest').style.display = 'block';
+      document.getElementById('formMult').style.display = 'none';
+      document.getElementById('formDiv').style.display = 'none';
+    }
+
+    function mostrarFormMult() {
+      document.getElementById('formSum').style.display = 'none';
+      document.getElementById('formRest').style.display = 'none';
+      document.getElementById('formMult').style.display = 'block';
+      document.getElementById('formDiv').style.display = 'none';
+    }
+
+    function mostrarFormDiv() {
+      document.getElementById('formSum').style.display = 'none';
+      document.getElementById('formRest').style.display = 'none';
+      document.getElementById('formMult').style.display = 'none';
+      document.getElementById('formDiv').style.display = 'block';
+    }
+
+    // Operaciones matematicas
+    function sumar() {
+      const num1 = parseFloat(document.getElementById('num1').value) || 0;
+      const num2 = parseFloat(document.getElementById('num2').value) || 0;
+      const suma = num1 + num2;
+      document.getElementById('resultadoSuma').textContent = 'Resultado: ' + suma;
+    }
+
+    function restar() {
+      const numero1 = parseFloat(document.getElementById('numero1').value) || 0;
+      const numero2 = parseFloat(document.getElementById('numero2').value) || 0;
+      const numero3 = parseFloat(document.getElementById('numero3').value) || 0;
+      const resta = numero1 - numero2 - numero3;
+      document.getElementById('resultadoResta').textContent = 'Resultado: ' + resta;
+    }
+
+    function multiplicar() {
+      const num3 = parseFloat(document.getElementById('num3').value) || 0;
+      const num4 = parseFloat(document.getElementById('num4').value) || 0;
+      const mult = num3 * num4;
+      document.getElementById('resultadoMult').textContent = 'Resultado: ' + mult;
+    }
+
+    function dividir() {
+      const num5 = parseFloat(document.getElementById('num5').value) || 1;
+      const num6 = parseFloat(document.getElementById('num6').value) || 1;
+      const div = num5 / num6;
+      document.getElementById('resultadoDiv').textContent = 'Resultado: ' + div.toFixed(2);
+    }
+  </script>
+</body>
+</html>
