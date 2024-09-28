@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function calcularEdad(){
+            var hoy = new Date();
+            var cumpleanos = new date(document.getElementById('fecha').value);
+            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+            var m = hoy.getMonth() - cumpleanos.getMonth();
+
+            if(m<0 ||(m===0 && hoy.getDate() < cumpleanos.getDate())){
+                edad --;
+            }
+            document.getElementById('edad').value = edad;
+            
+            if(edad>=15) {
+                document.getElementById('eventos').style.display="block";
+            }else{
+                document.getElementById('eventos').style.display="none";
+            }
+        }
+
+        function precioevento(){
+            if(document.getElementById('ev').value=1){
+                document.getElementById('precio').value=0;
+
+            }else if(document.getElementById('ev').value=2){
+              
+                document.getElementById('precio').value=1000;
+            }else{
+                document.getElementById('precio').value=5000;
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img
+                    src="https://triumphcolombia.com/wp-content/uploads/2022/07/Master-Logo-triumph-negative.png"
+                    style="height: 80px; width: 150px;" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+    <div class="container form-floating mb-3 py-4">
+        
+        <select class="form-select" aria-label="default select example">
+            <option selected>Seleccionar</option>
+            <option value="1">Tarjeta de identidad</option>
+            <option value="2">Cedula</option>
+        </select>
+        <label for="floatingInput">Numero de documento</label>
+    </div>
+    <div class="container mt-5">
+        <h1>Inscripciones</h1>
+        <form id="registrationForm" novalidate>
+            <!-- Tipo Documento -->
+            <div class="mb-3">
+                <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                <select class="form-select" id="tipoDocumento" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Cc">Cedula de Ciudadania</option>
+                    <option value="Tarjeta">Tarjeta de identidad</option>
+                </select>
+                <div class="invalid-feedback">Por favor, seleccione un tipo de documento.</div>
+            </div>
+    
+            <!-- Documento -->
+            <div class="mb-3">
+                <label for="documento" class="form-label">Documento</label>
+                <input type="text" class="form-control" minlength="7" maxlength="10" id="documento" placeholder="Número de documento" required>
+                <div class="invalid-feedback">Por favor, ingrese un número de documento válido.</div>
+            </div>
+    
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+                <div class="invalid-feedback">Por favor, ingrese su nombre completo.</div>
+            </div>
+    
+            <!-- Fecha de Nacimiento -->
+            <div class="mb-3">
+                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fecha" onblur="calcularEdad" required>
+                <div class="invalid-feedback">Por favor, ingrese su fecha de nacimiento.</div>
+            </div>
+    
+            <!-- Evento -->
+            <div class="mb-3">
+                <label for="evento" class="form-label">Evento</label>
+                <select class="form-select" id="ev" onchange="precioevento()">
+                    <option value="">Seleccione el evento...</option>
+                    <option value="rv">Moto GP</option>
+                    <option value="ia">Rodada medellin</option>
+                    <option value="cs">Lanzamiento de moto</option>
+                </select>
+                <div class="invalid-feedback">Por favor, seleccione un evento.</div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Costo</label>
+                    <input type="number" class="form-control" id="precio" placeholder="$" readonly required>
+                    <div class="invalid-feedback">Por favor, ingrese el costo.</div>
+            </div>
+    
+              <!-- Costo (bloqueado) -->
+              <div class="mb-3">
+                <label for="costo" id="precio" class="form-label">Costo</label>
+                <input type="number" class="form-control" id="precio" placeholder="$" readonly required>
+                <div id="precio" class="invalid-feedback">Por favor, ingrese el costo.</div>
+            </div>
+    
+          
+    
+            <!-- Total a Pagar -->
+            <div class="mb-3">
+                <label for="totalPagar" class="form-label">Total a Pagar</label>
+                <input type="number" class="form-control" id="totalPagar" placeholder="$" required>
+                <div class="invalid-feedback">Por favor, ingrese el total a pagar.</div>
+            </div>
+    
+            <!-- Botón Guardar -->
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Variables de los campos
+        const eventoSelect = document.getElementById('evento');
+        const costoInput = document.getElementById('costo');
+        const totalPagarInput = document.getElementById('totalPagar');
+        const codigoPromocionalInput = document.getElementById('codigoPromocional');
+    
+        let costo = 0;
+    
+        // Asignar costos según el evento seleccionado
+        eventoSelect.addEventListener('change', function() {
+            switch (eventoSelect.value) {
+                case 'rv':
+                    costo = 1000000;
+                    break;
+                case 'ia':
+                    costo = 1500000;
+                    break;
+                case 'cs':
+                    costo = 1200000;
+                    break;
+                default:
+                    costo = 0;
+            }
+            // Rellenar el campo de costo y total a pagar
+            actualizarCostos();
+        });
+    
+        // Evento para aplicar descuento cuando se ingrese el código promocional
+        codigoPromocionalInput.addEventListener('input', function() {
+            actualizarCostos();
+        });
+    
+        // Función para actualizar los costos
+        function actualizarCostos() {
+            let total = costo;
+            
+            // Si el código es "DESCUENTO10", aplicar un descuento del 10%
+            if (codigoPromocionalInput.value === "DESCUENTO10") {
+                total = costo * 0.9; // Aplica el 10% de descuento
+            }
+    
+            // Actualizar los campos de costo y total a pagar
+            costoInput.value = costo;
+            totalPagarInput.value = total.toFixed(2); // Limitar a 2 decimales
+        }
+    
+        // Validación del formulario
+        (function () {
+            'use strict'
+    
+            // Obtener el formulario
+            var form = document.getElementById('registrationForm');
+    
+            // Evento submit para validar
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+    
+                form.classList.add('was-validated');
+            }, false);
+        })();
+    
+    </script>
+</body>
+</html>
